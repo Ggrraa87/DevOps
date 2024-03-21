@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Pull Node Exporter Docker image
+      docker_image:
+        name: prom/node-exporter:v1.3.1
+        state: present
+
+    - name: Run Node Exporter container
+      docker_container:
+        name: node-exporter
+        image: prom/node-exporter:v1.3.1
+        ports:
+          - "9100:9100"
+        volumes:
+          - /proc:/host/proc:ro
+          - /sys:/host/sys:ro
+          - /:/rootfs:ro
+        command:
+          - '--path.procfs=/host/proc'
+          - '--path.sysfs=/host/sys'
+          - '--collector.filesystem.mount-points-exclude'
+          - '^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)'
+        restart_policy: always
+
