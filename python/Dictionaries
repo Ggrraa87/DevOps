@@ -1,0 +1,25 @@
+"""
+С клавиатуры вводятся слова через запятую с пробелом.
+Выводится на экран три наиболее часто встречаемых слова, вместе с количеством этих слов.
+"""
+l=input()
+l=l.split(", ") 
+l=list(l)
+d = {}
+i=0
+D=[]
+for el in l:
+    d[el] = d.get(el,0) + 1
+d=list(map(list, d.items()))
+for i in range(0,len(d)):
+    k=d[i][0]
+    d[i][0]=d[i][1]
+    d[i][1]=k
+d=sorted(d,reverse=True)
+for m in range(0,len(d)):
+    e=d[m][0]
+    d[m][0]=d[m][1]
+    d[m][1]=e
+d=dict(d[0:3])
+for key, value in d.items():
+    print(str(key)+":",value)
