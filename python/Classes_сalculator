@@ -1,0 +1,59 @@
+"""
+Класс Calculator реализует простые арифметические операции и хранит историю операций.
+
+Методы:
+- sum(self, a, b): сложение чисел a и b
+- sub(self, a, b): вычитание
+- mul(self, a, b): умножение
+- div(self, a, b, mod=False): деление. Если параметр mod == True, то метод возвращает остаток от деления вместо деления. По умолчанию mod=False.
+- history(self, n): возвращает строку с операцией по ее номеру относительно текущего момента (1 - последняя, 2 - предпоследняя). Формат вывода: sum(5, 15) == 20
+- last: строка того же формата, что и метод history, содержит информацию о последней операции по всем созданным объектам калькулятора. Если операций пока не было, то None.
+- clear(cls): метод, который очищает last, т.е. присваивает ему значение None.
+"""
+class Calculator: #задаем класс
+    last=None 
+    def __init__(self): #функция для объявления параметров класса (выполняется для всех объектов при создании)
+        self.operations=[] #для last (то есть для всех объектов класса)      
+    def sum(self,a,b): #атрибут объекта
+        self.a=int(a) 
+        self.b=int(b)
+        c=self.a+self.b
+        Calculator.last=f"sum({self.a}, {self.b}) == {a+b}" #присваиваем значение метода класса ПО ВСЕМ ОБЪЕКТАМ КЛАССА
+        self.operations.append(Calculator.last)
+        return c
+    def sub(self,a,b):
+        self.a=int(a)
+        self.b=int(b)
+        Calculator.last=f"sub({self.a}, {self.b}) == {a-b}"
+        self.operations.append(Calculator.last)   
+        c=self.a-self.b
+        return c
+    def mul(self,a,b):
+        self.a=int(a)
+        self.b=int(b)
+        c=a*b
+        Calculator.last=f"mul({self.a}, {self.b}) == {a*b}"
+        self.operations.append(Calculator.last)
+        return c
+    def div(self,a,b,mod=False):
+        self.a=int(a)
+        self.b=int(b)
+        if mod==True:
+            c=a%b
+            Calculator.last=f"div({self.a}, {self.b}) == {c}"
+            self.operations.append(Calculator.last)
+            return c
+        else:
+            c=a/b
+            Calculator.last=f"div({self.a}, {self.b}) == {c}"
+            self.operations.append(Calculator.last)
+            return c
+    def history(self, n): #атрибут объекта
+        if len(self.operations)<n:
+            return None
+        else:
+            n=int(n)
+            return self.operations[-n]                      
+    @classmethod
+    def clear(cls):
+        cls.last=None
