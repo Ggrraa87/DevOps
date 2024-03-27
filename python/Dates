@@ -1,0 +1,15 @@
+"""
+С клавиатуры вводится дата в формате DD-MM-YYYY.
+Нужно вывести дату начала недели, к которой относится введенная дата (дата понедельника недели),
+в таком же формате.
+"""
+import datetime
+a= input()
+a=a.split("-")
+d=int(a[0])
+m=int(a[1])
+y=int(a[2])
+A=datetime.date(y, m, d)
+x=A.weekday()
+date_P=A-datetime.timedelta(days=x)
+print(datetime.datetime.strftime(date_P, "%d-%m-%Y"))
