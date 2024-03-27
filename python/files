@@ -1,0 +1,35 @@
+""" 
+Напишите функцию get_popular_name_from_file(filename), которая считывает файл, в котором в каждой строке записаны имя и фамилия через пробел. filename - это имя файла, 
+в котором записаны эти имена. Вам нужно вернуть строку - самое популярное имя в файле. Если таких имен несколько, они должны быть перечислены через запятую внутри строки
+в алфавитном порядке.
+"""
+import re
+def get_popular_name_from_file(filename):
+   with open(filename,'r',encoding='utf-8') as f:
+    d=[]
+    imena=[]
+    kolvo_imen={}
+    k=0
+    for line in f:
+        d=d+re.split('\W+',line) #cчитываю все слова используя ругулярки
+    d_new=list(filter(None,d))#удаляю пустой элемент   
+    for i in range(0,len(d_new),2): #создаю список только имен
+        imena=imena+[d_new[i]]
+    for el in imena: #считаю колво имен и записываю в словарь
+        kolvo_imen[el] = kolvo_imen.get(el, 0) + 1
+    sorted_values = sorted(kolvo_imen.values(), reverse = True) #сортирую словарь по значениям,получаю отсортированный список
+    new_sorted_dict = {}
+    for i in sorted_values:
+        for k in kolvo_imen.keys():
+            if kolvo_imen[k] == i: #записываю в словарь значения из сортированного списка
+                new_sorted_dict[k] = kolvo_imen[k]
+    max_kolvo = list(new_sorted_dict.values())[0] #максимальное значения
+    results = []
+    for key, value in new_sorted_dict.items():
+        if value == max_kolvo:
+            results.append(key)
+    results.sort() #сортировка по алфавиту
+    s = ''
+    for i in results:
+        s += i + ', '
+    return s[:-2]
