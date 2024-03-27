@@ -1,0 +1,38 @@
+"""
+К вам поступают данные в виде json-строки, в которых содержится список людей.
+Для каждого человека описаны различные его параметры, но вам нужно посчитать просто средний возраст всех людей из списка.
+
+Формат ввода
+[
+    {
+        "name": "Петр",
+        "surname": "Петров",
+        "patronymic": "Васильевич",
+        "age": 23,
+        "occupation": "ойтишнек"
+    },
+    {
+        "name": "Василий",
+        "surname": "Васильев",
+        "patronymic": "Петрович",
+        "age": 24,
+        "occupation": "дворник"
+    }
+]
+Формат вывода
+{"mean_age": 23.5}
+"""
+import json
+def mean_age(json_string):
+    vvod=json.loads(json_string)
+    vz=0
+    k=0
+    for i in vvod:
+        for keys in i.keys():
+            if i["age"]!=0:
+                vz=vz+float(i["age"])
+                k=k+1
+    sr_age=vz/k
+    
+    vivod=json.dumps({"mean_age":sr_age})
+    return vivod
