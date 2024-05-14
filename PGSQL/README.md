@@ -23,6 +23,7 @@ python install_postgresql.py <hostname>
 ### Ошибка: "Permission denied (publickey,password)"
   Ошибка возникает, когда SSH-клиент не может подключиться к удаленному хосту.
   Решение:
+
 1.Проверьте правильность введенных username и password.
 
 2.Убедитесь, что у вас есть доступ к удаленному хосту.
@@ -32,6 +33,7 @@ python install_postgresql.py <hostname>
 ### Ошибка: "sudo: no tty present and no askpass program specified"
   Ошибка возникает при попытке выполнения команд sudo без ввода пароля.
   Решение:
+
 1.Настройте sudo на удаленном хосте для пользователя, чтобы он мог выполнять команды без пароля.
 
 2.Добавьте пользователя в группу sudoers.
@@ -39,6 +41,7 @@ python install_postgresql.py <hostname>
 ### Ошибка: "Could not resolve hostname"
  Ошибка возникает, когда имя хоста не может быть разрешено.
 Решение:
+
 1.Проверьте правильность введенного IP адреса или имени хоста.
 
 2.Убедитесь, что ваш DNS-сервер настроен правильно
@@ -46,6 +49,7 @@ python install_postgresql.py <hostname>
 ### Ошибка: "psycopg2.OperationalError: could not connect to server"
   Ошибка возникает, когда скрипт не может подключиться к базе данных PostgreSQL.
   Решение:
+
 1.Проверьте, что PostgreSQL запущен на удаленном хосте.
 
 2.Убедитесь, что настройки firewall позволяют подключаться к порту 5432.
