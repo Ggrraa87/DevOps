@@ -22,6 +22,7 @@ python install_postgresql.py <hostname>
 ## Возможные ошибки и их решения
 ### Ошибка: "Permission denied (publickey,password)"
   Ошибка возникает, когда SSH-клиент не может подключиться к удаленному хосту.
+  
   Решение:
 
 1.Проверьте правильность введенных username и password.
@@ -40,6 +41,7 @@ python install_postgresql.py <hostname>
 
 ### Ошибка: "Could not resolve hostname"
  Ошибка возникает, когда имя хоста не может быть разрешено.
+
 Решение:
 
 1.Проверьте правильность введенного IP адреса или имени хоста.
@@ -48,6 +50,7 @@ python install_postgresql.py <hostname>
 
 ### Ошибка: "psycopg2.OperationalError: could not connect to server"
   Ошибка возникает, когда скрипт не может подключиться к базе данных PostgreSQL.
+  
   Решение:
 
 1.Проверьте, что PostgreSQL запущен на удаленном хосте.
